@@ -15,12 +15,17 @@ class News(models.Model):
         def __unicode__(self):
             return  super.title
 
+        def __str__(self):
+            return super.title
+
 class Photo(models.Model):
     img = models.ImageField(upload_to='gallery/photos', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='gallery/thumbnail', blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
+    news_id = models.ForeignKey(News, on_delete=models.CASCADE, blank=True, null=True,)
     class Meta:
         ordering = ['date']
+
 
 
 
